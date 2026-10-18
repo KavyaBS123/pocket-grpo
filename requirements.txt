@@ -1,0 +1,6 @@
+# The tabular environment (src/environment.py) uses only the standard library.
+# These are needed for the LLM experiments (src/llm_policy.py and later scripts).
+# Pinned to the versions this project was tested with, for reproducibility.
+torch==2.14.1
+transformers==5.20.1
+peft==0.21.2

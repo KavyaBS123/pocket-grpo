@@ -1,0 +1,12 @@
+# Virtual environment
+.venv/
+
+# Python bytecode
+__pycache__/
+*.pyc
+
+# Trained model weights (regenerate with python -m src.train_grpo)
+checkpoints/
+
+# macOS
+.DS_Store
