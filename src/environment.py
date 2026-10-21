@@ -27,11 +27,13 @@ INCORRECT_REWARD = -1.0
 
 
 def validate_state(state):
+    """Raise ValueError unless `state` is one of the six known task types."""
     if state not in CORRECT_TOOL:
         raise ValueError(f"Unknown state {state!r}. Valid states: {', '.join(STATES)}")
 
 
 def validate_action(action):
+    """Raise ValueError unless `action` is one of the three known tools."""
     if action not in ACTIONS:
         raise ValueError(f"Unknown action {action!r}. Valid actions: {', '.join(ACTIONS)}")
 
@@ -47,6 +49,7 @@ class ToolSelectionEnv:
     """Single-step episodes: one task, one tool choice, one reward."""
 
     def __init__(self, seed=None):
+        """seed makes the randomly drawn task sequence reproducible across runs."""
         self._rng = random.Random(seed)
         self._state = None
         self._done = True

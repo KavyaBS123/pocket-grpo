@@ -9,6 +9,11 @@ from src.environment import ACTIONS, ToolSelectionEnv
 
 
 def run_random_policy(episodes=10, seed=0, verbose=True):
+    """Play `episodes` episodes, choosing a tool uniformly at random.
+
+    With three tools, guessing is right about 1/3 of the time. That number is
+    the baseline the learning agent later has to beat.
+    """
     env = ToolSelectionEnv(seed=seed)
     rng = random.Random(seed + 1)
     total_reward = 0.0

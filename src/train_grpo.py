@@ -27,13 +27,15 @@ import torch
 from peft import LoraConfig, get_peft_model
 
 from src.llm_policy import MAX_NEW_TOKENS, build_prompt, generate_replies, load_model_and_tokenizer
-from src.llm_reward import llm_reward
-from src.tasks import TEST_TASKS, TRAIN_TASKS
+from src.llm_reward import sequence_reward
+from src.tasks import TASK_SETS
 
 
 def parse_args():
+    """Read the CLI options that control the training run (see --help)."""
     p = argparse.ArgumentParser(description="Simplified GRPO training for tool selection.")
-    p.add_argument("--epochs", type=int, default=4, help="passes over the 42 practice questions")
+    p.add_argument("--tasks", choices=TASK_SETS, default="basic", help="which task set to train on")
+    p.add_argument("--epochs", type=int, default=4, help="passes over the practice questions")
     p.add_argument("--prompts-per-step", type=int, default=6, help="questions per optimizer update")
     p.add_argument("--group-size", type=int, default=8, help="sampled answers per question")
     p.add_argument("--micro-batch", type=int, default=4, help="answers per learning pass (lower = less memory)")
@@ -69,7 +71,7 @@ def add_lora(model):
 
 
 @torch.no_grad()
-def sample_group(model, tokenizer, task_text, group_size, temperature):
+def sample_group(model, tokenizer, task_text, system_prompt, group_size, temperature):
     """Sample `group_size` answers for one question.
 
     Returns the token ids we need for the learning step, plus the decoded text
@@ -80,7 +82,7 @@ def sample_group(model, tokenizer, task_text, group_size, temperature):
     # eval mode = "just generating": gradient checkpointing switches off and
     # generation can reuse its cache, which is much faster.
     model.eval()
-    prompt = build_prompt(tokenizer, task_text)
+    prompt = build_prompt(tokenizer, task_text, system_prompt)
     inputs = tokenizer([prompt], return_tensors="pt").to(model.device)
     prompt_len = inputs["input_ids"].shape[1]
 
@@ -164,16 +166,23 @@ def group_advantages(rewards):
 
 
 @torch.no_grad()
-def exam_accuracy(model, tokenizer):
-    """Greedy accuracy on the 18 held-out questions the model never trains on."""
+def exam_accuracy(model, tokenizer, task_set):
+    """Greedy accuracy on the held-out questions the model never trains on."""
     model.eval()
-    texts = [text for text, _ in TEST_TASKS]
-    replies = generate_replies(model, tokenizer, texts, sample=False)
-    correct = sum(llm_reward(state, r[0]) > 0 for (_, state), r in zip(TEST_TASKS, replies))
-    return correct, len(TEST_TASKS)
+    tests = task_set["test"]
+    replies = generate_replies(
+        model, tokenizer, [t.text for t in tests], sample=False, system_prompt=task_set["system_prompt"]
+    )
+    correct = sum(sequence_reward(t.tools, r[0]) > 0 for t, r in zip(tests, replies))
+    return correct, len(tests)
 
 
 def main():
+    """Load the model, attach LoRA, run the GRPO loop, save the trained adapter.
+
+    Order of events: baseline exam -> for each epoch {shuffle practice
+    questions -> sample/score/update in batches} -> exam -> save.
+    """
     args = parse_args()
     random.seed(args.seed)
     torch.manual_seed(args.seed)
@@ -188,13 +197,17 @@ def main():
     trainable = [p for p in model.parameters() if p.requires_grad]
     optimizer = torch.optim.AdamW(trainable, lr=args.lr)
 
-    correct, total = exam_accuracy(model, tokenizer)
+    task_set = TASK_SETS[args.tasks]
+    system_prompt = task_set["system_prompt"]
+    print(f"Task set: {args.tasks} ({len(task_set['train'])} practice, {len(task_set['test'])} exam questions)")
+
+    correct, total = exam_accuracy(model, tokenizer, task_set)
     print(f"Exam before training: {correct}/{total}\n")
 
     step = 0
     for epoch in range(1, args.epochs + 1):
         # Shuffle so the model doesn't see the questions in the same order every epoch.
-        tasks = TRAIN_TASKS[:]
+        tasks = task_set["train"][:]
         random.shuffle(tasks)
 
         for start in range(0, len(tasks), args.prompts_per_step):
@@ -208,13 +221,13 @@ def main():
             total_loss = 0.0
             kl_values = []  # drift of each processed answer, for logging
 
-            for task_text, state in batch:
+            for task in batch:
                 # 1. Sample a group of answers.
                 prompt_ids, completion_ids, completion_mask, texts = sample_group(
-                    model, tokenizer, task_text, args.group_size, args.temperature
+                    model, tokenizer, task.text, system_prompt, args.group_size, args.temperature
                 )
-                # 2. Score each answer with the environment's reward.
-                rewards = [llm_reward(state, text) for text in texts]
+                # 2. Score each answer: +1 right sequence, 0 wrong order, -1 otherwise.
+                rewards = [sequence_reward(task.tools, text) for text in texts]
                 batch_rewards += rewards
 
                 has_signal = len(set(rewards)) > 1
@@ -281,7 +294,7 @@ def main():
                 f"KL {kl} | loss {total_loss:+.4f} | {time.time() - t0:.1f}s{memory}"
             )
 
-        correct, total = exam_accuracy(model, tokenizer)
+        correct, total = exam_accuracy(model, tokenizer, task_set)
         print(f"--- end of epoch {epoch}: exam {correct}/{total} ---\n")
 
     # Saves only the small LoRA weights (a few MB), not the whole model.

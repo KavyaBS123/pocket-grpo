@@ -1,0 +1,91 @@
+Loading model...
+trainable params: 2,162,688 || all params: 496,195,456 || trainable%: 0.4359
+Task set: hard (72 practice, 30 exam questions)
+Exam before training: 5/30
+
+[transformers] `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+epoch 1 step   1 | sampled accuracy   19% | mean reward -0.62 | groups with signal 4/6 | KL 0.000 | loss -5.6022 | 17.3s | GPU mem 1.2 GB
+epoch 1 step   2 | sampled accuracy   33% | mean reward -0.33 | groups with signal 2/6 | KL 8.484 | loss -2.1674 | 10.2s | GPU mem 1.2 GB
+epoch 1 step   3 | sampled accuracy   33% | mean reward -0.33 | groups with signal 4/6 | KL 0.909 | loss +0.2552 | 12.8s | GPU mem 1.2 GB
+epoch 1 step   4 | sampled accuracy   33% | mean reward -0.33 | groups with signal 3/6 | KL 4.097 | loss -0.1877 | 11.4s | GPU mem 1.2 GB
+epoch 1 step   5 | sampled accuracy   58% | mean reward +0.17 | groups with signal 5/6 | KL 12.289 | loss -1.3647 | 16.2s | GPU mem 1.2 GB
+epoch 1 step   6 | sampled accuracy   27% | mean reward -0.40 | groups with signal 2/6 | KL 8.042 | loss -3.0101 | 10.0s | GPU mem 1.2 GB
+epoch 1 step   7 | sampled accuracy   19% | mean reward -0.62 | groups with signal 2/6 | KL 26.378 | loss -2.3895 | 9.6s | GPU mem 1.2 GB
+epoch 1 step   8 | sampled accuracy   33% | mean reward -0.33 | groups with signal 2/6 | KL 8.199 | loss -0.3476 | 8.5s | GPU mem 1.2 GB
+epoch 1 step   9 | sampled accuracy   19% | mean reward -0.62 | groups with signal 3/6 | KL 11.640 | loss -0.3235 | 12.1s | GPU mem 1.2 GB
+epoch 1 step  10 | sampled accuracy   56% | mean reward +0.29 | groups with signal 4/6 | KL 9.431 | loss -5.5741 | 14.5s | GPU mem 1.2 GB
+epoch 1 step  11 | sampled accuracy   50% | mean reward +0.04 | groups with signal 4/6 | KL 4.700 | loss -0.5785 | 13.6s | GPU mem 1.2 GB
+epoch 1 step  12 | sampled accuracy   19% | mean reward -0.62 | groups with signal 3/6 | KL 8.975 | loss -0.5544 | 10.7s | GPU mem 1.2 GB
+--- end of epoch 1: exam 18/30 ---
+
+epoch 2 step  13 | sampled accuracy   62% | mean reward +0.25 | groups with signal 5/6 | KL 3.752 | loss -1.4381 | 17.7s | GPU mem 1.2 GB
+epoch 2 step  14 | sampled accuracy   50% | mean reward +0.00 | groups with signal 5/6 | KL 3.090 | loss -1.8296 | 17.4s | GPU mem 1.2 GB
+epoch 2 step  15 | sampled accuracy   52% | mean reward +0.08 | groups with signal 3/6 | KL 5.575 | loss -2.0400 | 11.2s | GPU mem 1.2 GB
+epoch 2 step  16 | sampled accuracy   85% | mean reward +0.71 | groups with signal 2/6 | KL 2.135 | loss -0.2271 | 8.4s | GPU mem 1.2 GB
+epoch 2 step  17 | sampled accuracy   83% | mean reward +0.67 | groups with signal 2/6 | KL 2.796 | loss +0.0151 | 8.7s | GPU mem 1.2 GB
+epoch 2 step  18 | sampled accuracy   81% | mean reward +0.65 | groups with signal 4/6 | KL 3.950 | loss -3.4042 | 14.8s | GPU mem 1.2 GB
+epoch 2 step  19 | sampled accuracy   62% | mean reward +0.25 | groups with signal 2/6 | KL 4.696 | loss -1.2046 | 10.1s | GPU mem 1.2 GB
+epoch 2 step  20 | sampled accuracy   65% | mean reward +0.29 | groups with signal 3/6 | KL 2.220 | loss -0.2923 | 11.5s | GPU mem 1.2 GB
+epoch 2 step  21 | sampled accuracy   88% | mean reward +0.75 | groups with signal 3/6 | KL 52.925 | loss -4.6120 | 11.5s | GPU mem 1.2 GB
+epoch 2 step  22 | sampled accuracy   85% | mean reward +0.71 | groups with signal 1/6 | KL 1.141 | loss +0.0775 | 6.3s | GPU mem 1.2 GB
+epoch 2 step  23 | sampled accuracy   69% | mean reward +0.38 | groups with signal 4/6 | KL 5.971 | loss -1.7898 | 14.5s | GPU mem 1.2 GB
+epoch 2 step  24 | sampled accuracy   94% | mean reward +0.88 | groups with signal 2/6 | KL 9.926 | loss -5.6317 | 10.1s | GPU mem 1.2 GB
+--- end of epoch 2: exam 24/30 ---
+
+epoch 3 step  25 | sampled accuracy   69% | mean reward +0.38 | groups with signal 3/6 | KL 11.314 | loss -3.2812 | 13.1s | GPU mem 1.2 GB
+epoch 3 step  26 | sampled accuracy   56% | mean reward +0.12 | groups with signal 4/6 | KL 5.583 | loss -1.7720 | 14.6s | GPU mem 1.2 GB
+epoch 3 step  27 | sampled accuracy   98% | mean reward +0.96 | groups with signal 1/6 | KL 0.356 | loss -1.2083 | 7.1s | GPU mem 1.2 GB
+epoch 3 step  28 | sampled accuracy   90% | mean reward +0.79 | groups with signal 2/6 | KL 4.406 | loss -0.0518 | 8.8s | GPU mem 1.2 GB
+epoch 3 step  29 | sampled accuracy   65% | mean reward +0.31 | groups with signal 2/6 | KL 7.571 | loss -0.3707 | 8.7s | GPU mem 1.2 GB
+epoch 3 step  30 | sampled accuracy   42% | mean reward -0.17 | groups with signal 1/6 | KL 7.433 | loss -0.5494 | 6.7s | GPU mem 1.2 GB
+epoch 3 step  31 | sampled accuracy   88% | mean reward +0.75 | groups with signal 1/6 | KL 149.087 | loss -0.7252 | 6.6s | GPU mem 1.2 GB
+epoch 3 step  32 | sampled accuracy   69% | mean reward +0.38 | groups with signal 3/6 | KL 68.863 | loss +0.1959 | 11.7s | GPU mem 1.2 GB
+epoch 3 step  33 | sampled accuracy   73% | mean reward +0.46 | groups with signal 2/6 | KL 5.286 | loss -0.5576 | 9.0s | GPU mem 1.2 GB
+epoch 3 step  34 | sampled accuracy  100% | mean reward +1.00 | groups with signal 0/6 | KL   -   | loss +0.0000 | 3.6s | GPU mem 1.2 GB
+epoch 3 step  35 | sampled accuracy   60% | mean reward +0.21 | groups with signal 2/6 | KL 2.120 | loss +0.0813 | 9.2s | GPU mem 1.2 GB
+epoch 3 step  36 | sampled accuracy  100% | mean reward +1.00 | groups with signal 0/6 | KL   -   | loss +0.0000 | 3.8s | GPU mem 1.2 GB
+--- end of epoch 3: exam 26/30 ---
+
+epoch 4 step  37 | sampled accuracy  100% | mean reward +1.00 | groups with signal 0/6 | KL   -   | loss +0.0000 | 4.0s | GPU mem 1.2 GB
+epoch 4 step  38 | sampled accuracy   73% | mean reward +0.48 | groups with signal 3/6 | KL 6.423 | loss -0.2533 | 10.8s | GPU mem 1.2 GB
+epoch 4 step  39 | sampled accuracy  100% | mean reward +1.00 | groups with signal 0/6 | KL   -   | loss +0.0000 | 3.6s | GPU mem 1.2 GB
+epoch 4 step  40 | sampled accuracy   94% | mean reward +0.88 | groups with signal 2/6 | KL 10.540 | loss -2.5977 | 9.2s | GPU mem 1.2 GB
+epoch 4 step  41 | sampled accuracy   71% | mean reward +0.42 | groups with signal 2/6 | KL 7.622 | loss -1.4867 | 9.4s | GPU mem 1.2 GB
+epoch 4 step  42 | sampled accuracy   98% | mean reward +0.96 | groups with signal 1/6 | KL 6.206 | loss -1.4906 | 6.2s | GPU mem 1.2 GB
+epoch 4 step  43 | sampled accuracy  100% | mean reward +1.00 | groups with signal 0/6 | KL   -   | loss +0.0000 | 3.8s | GPU mem 1.2 GB
+epoch 4 step  44 | sampled accuracy  100% | mean reward +1.00 | groups with signal 0/6 | KL   -   | loss +0.0000 | 3.6s | GPU mem 1.2 GB
+epoch 4 step  45 | sampled accuracy   81% | mean reward +0.62 | groups with signal 2/6 | KL 1.519 | loss -0.4303 | 8.6s | GPU mem 1.2 GB
+epoch 4 step  46 | sampled accuracy   96% | mean reward +0.92 | groups with signal 2/6 | KL 7.269 | loss -1.7394 | 8.9s | GPU mem 1.2 GB
+epoch 4 step  47 | sampled accuracy  100% | mean reward +1.00 | groups with signal 0/6 | KL   -   | loss +0.0000 | 3.8s | GPU mem 1.2 GB
+epoch 4 step  48 | sampled accuracy  100% | mean reward +1.00 | groups with signal 0/6 | KL   -   | loss +0.0000 | 4.1s | GPU mem 1.2 GB
+--- end of epoch 4: exam 27/30 ---
+
+epoch 5 step  49 | sampled accuracy   83% | mean reward +0.67 | groups with signal 0/6 | KL   -   | loss +0.0000 | 3.9s | GPU mem 1.2 GB
+epoch 5 step  50 | sampled accuracy  100% | mean reward +1.00 | groups with signal 0/6 | KL   -   | loss +0.0000 | 3.5s | GPU mem 1.2 GB
+epoch 5 step  51 | sampled accuracy  100% | mean reward +1.00 | groups with signal 0/6 | KL   -   | loss +0.0000 | 3.6s | GPU mem 1.2 GB
+epoch 5 step  52 | sampled accuracy   96% | mean reward +0.96 | groups with signal 1/6 | KL 4.421 | loss -0.3957 | 6.4s | GPU mem 1.2 GB
+epoch 5 step  53 | sampled accuracy   92% | mean reward +0.83 | groups with signal 2/6 | KL 4.726 | loss -0.1735 | 8.8s | GPU mem 1.2 GB
+epoch 5 step  54 | sampled accuracy   90% | mean reward +0.90 | groups with signal 1/6 | KL 2.227 | loss +0.0645 | 6.5s | GPU mem 1.2 GB
+epoch 5 step  55 | sampled accuracy   92% | mean reward +0.83 | groups with signal 2/6 | KL 2.907 | loss -1.9791 | 9.7s | GPU mem 1.2 GB
+epoch 5 step  56 | sampled accuracy   88% | mean reward +0.75 | groups with signal 3/6 | KL 7.783 | loss -1.6502 | 11.2s | GPU mem 1.2 GB
+epoch 5 step  57 | sampled accuracy   98% | mean reward +0.96 | groups with signal 1/6 | KL 6.247 | loss -0.6398 | 6.0s | GPU mem 1.2 GB
+epoch 5 step  58 | sampled accuracy   85% | mean reward +0.71 | groups with signal 2/6 | KL 13.693 | loss -0.8748 | 9.3s | GPU mem 1.2 GB
+epoch 5 step  59 | sampled accuracy  100% | mean reward +1.00 | groups with signal 0/6 | KL   -   | loss +0.0000 | 3.7s | GPU mem 1.2 GB
+epoch 5 step  60 | sampled accuracy  100% | mean reward +1.00 | groups with signal 0/6 | KL   -   | loss +0.0000 | 3.6s | GPU mem 1.2 GB
+--- end of epoch 5: exam 27/30 ---
+
+epoch 6 step  61 | sampled accuracy   92% | mean reward +0.83 | groups with signal 2/6 | KL 8.147 | loss -0.3092 | 10.4s | GPU mem 1.2 GB
+epoch 6 step  62 | sampled accuracy  100% | mean reward +1.00 | groups with signal 0/6 | KL   -   | loss +0.0000 | 3.8s | GPU mem 1.2 GB
+epoch 6 step  63 | sampled accuracy   96% | mean reward +0.92 | groups with signal 1/6 | KL 8.802 | loss -0.2492 | 6.7s | GPU mem 1.2 GB
+epoch 6 step  64 | sampled accuracy   98% | mean reward +0.96 | groups with signal 1/6 | KL 0.218 | loss -0.3829 | 6.7s | GPU mem 1.2 GB
+epoch 6 step  65 | sampled accuracy  100% | mean reward +1.00 | groups with signal 0/6 | KL   -   | loss +0.0000 | 3.5s | GPU mem 1.2 GB
+epoch 6 step  66 | sampled accuracy  100% | mean reward +1.00 | groups with signal 0/6 | KL   -   | loss +0.0000 | 3.5s | GPU mem 1.2 GB
+epoch 6 step  67 | sampled accuracy   98% | mean reward +0.96 | groups with signal 1/6 | KL 3.539 | loss -0.2136 | 6.1s | GPU mem 1.2 GB
+epoch 6 step  68 | sampled accuracy   94% | mean reward +0.88 | groups with signal 1/6 | KL 5.083 | loss -0.0254 | 6.1s | GPU mem 1.2 GB
+epoch 6 step  69 | sampled accuracy  100% | mean reward +1.00 | groups with signal 0/6 | KL   -   | loss +0.0000 | 3.6s | GPU mem 1.2 GB
+epoch 6 step  70 | sampled accuracy   98% | mean reward +0.96 | groups with signal 1/6 | KL 2.015 | loss -0.1343 | 6.0s | GPU mem 1.2 GB
+epoch 6 step  71 | sampled accuracy   92% | mean reward +0.83 | groups with signal 3/6 | KL 3.673 | loss -1.8623 | 11.4s | GPU mem 1.2 GB
+epoch 6 step  72 | sampled accuracy  100% | mean reward +1.00 | groups with signal 0/6 | KL   -   | loss +0.0000 | 3.8s | GPU mem 1.2 GB
+--- end of epoch 6: exam 28/30 ---
+
+Saved LoRA weights to checkpoints/grpo-hard

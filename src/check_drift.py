@@ -46,6 +46,7 @@ def reply(model, tokenizer, text):
 
 
 def main():
+    """Print each chat prompt answered by the original model and by every adapter."""
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("adapters", nargs="+", help="folders with trained LoRA weights")
     args = parser.parse_args()

@@ -1,4 +1,4 @@
-"""The LLM acting as an RL *policy*: given a task (state), it produces a tool (action).
+"""The LLM acting as an RL *policy*: given a task (state), it produces tools (the action).
 
 In RL terms, a policy is a rule for choosing actions. In the tabular world the
 policy will be "pick the tool with the highest Q-value". Here the policy is the
@@ -54,7 +54,8 @@ def build_prompt(tokenizer, task_text, system_prompt=BASIC_SYSTEM_PROMPT):
 
 
 @torch.no_grad()  # No gradients needed just to generate text; saves memory.
-def generate_replies(model, tokenizer, task_texts, sample=False, num_samples=1, batch_size=16):
+def generate_replies(model, tokenizer, task_texts, sample=False, num_samples=1, batch_size=16,
+                     system_prompt=BASIC_SYSTEM_PROMPT):
     """Generate replies for each task. Returns one list of `num_samples` strings per task.
 
     sample=False -> greedy decoding: always take the most likely next token.
@@ -77,7 +78,7 @@ def generate_replies(model, tokenizer, task_texts, sample=False, num_samples=1, 
     all_replies = []
     for start in range(0, len(task_texts), batch_size):
         batch = task_texts[start:start + batch_size]
-        prompts = [build_prompt(tokenizer, text) for text in batch]
+        prompts = [build_prompt(tokenizer, text, system_prompt) for text in batch]
         inputs = tokenizer(prompts, return_tensors="pt", padding=True).to(model.device)
 
         outputs = model.generate(
